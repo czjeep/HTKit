@@ -15,7 +15,8 @@ extension UITableView {
             return cell
         }
         
-        let nib = UINib(nibName: className, bundle: nil)
+//        let nib = UINib(nibName: className, bundle: nil)
+        let nib = T.nib()
         register(nib, forCellReuseIdentifier: className)
         let cell = dequeueReusableCell(withIdentifier: className) as! T
         return cell
