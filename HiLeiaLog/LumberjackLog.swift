@@ -43,7 +43,7 @@ class LumberjackLog: NSObject {
              line: UInt,
              function: StaticString,
              flag: DDLogFlag) {
-        _DDLogMessage(message,
+        _DDLogMessage("\(message)",
                       level: .all,
                       flag: flag,
                       context: 0,
@@ -127,7 +127,8 @@ class LumberjackConsolLogFormatter: NSObject, DDLogFormatter {
         let line = logMessage.line
         
         let flagStr = logMessage.flag.flagName
-        let tag = logMessage.representedObject ?? ""
+//        let tag = logMessage.representedObject ?? ""  //3.8.0
+        let tag = logMessage.tag ?? ""  //3.6.1
         let msg = logMessage.message
         
         return "[\(tag) \(file) \(line)] [\(flagStr)] \(msg)"
