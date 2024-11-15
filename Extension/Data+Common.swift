@@ -32,4 +32,11 @@ extension Data {
         }
         return nil
     }
+    
+    func jsonDic() -> [String: Any] {
+        guard let obj = json() as? [String: Any] else {
+            return [:]
+        }
+        return obj
+    }
 }
