@@ -25,7 +25,7 @@ extension UIImageView {
         }
         var placeholder: UIImage?
         if let t = placeholderImageName {
-            placeholder = UIImage(named: t)
+            placeholder = .bundleImage(t)
         }
         sd_setImage(with: url, placeholderImage: placeholder)
     }
