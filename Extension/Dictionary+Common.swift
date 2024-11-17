@@ -33,6 +33,15 @@ extension Dictionary {
         return nil
     }
     
+    func int(for key: Key) -> Int? {
+        if let value = self[key] {
+            if let result = value as? Int {
+                return result
+            }
+        }
+        return nil
+    }
+    
     var jsonData: Data? {
         do {
             let data = try JSONSerialization.data(withJSONObject: self)

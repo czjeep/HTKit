@@ -19,6 +19,8 @@ class HTHUD: NSObject {
         SVProgressHUD.setMaximumDismissTimeInterval(3)
         SVProgressHUD.setCornerRadius(18)
         SVProgressHUD.setDefaultMaskType(.clear)
+        SVProgressHUD.setBackgroundColor(.lightGray)
+        SVProgressHUD.setForegroundColor(.white)
     }
     
     /// 显示加载动画。要调用dismiss来消失
