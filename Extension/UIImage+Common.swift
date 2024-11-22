@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 extension UIImage {
     
@@ -48,6 +49,12 @@ extension UIImage {
         let context = CIContext(options: nil)
         let cgImage = context.createCGImage(ciimage, from: ciimage.extent)!
         self.init(cgImage: cgImage)
+    }
+    
+    
+    func resizedImage(with size: CGSize) -> UIImage? {
+        let image = sd_resizedImage(with: size, scaleMode: .aspectFit)
+        return image
     }
 }
 
