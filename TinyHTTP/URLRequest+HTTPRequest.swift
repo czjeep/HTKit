@@ -23,9 +23,9 @@ extension URLRequest {
         let data: Data?
         switch (r.method, r.contentType) {
         case (.get, _):
-            let str = Self.createFormString(param)
-            if !str.isEmpty {
-                req.url = URL(string: r.origin + r.path + "?" + str)!
+            let str = Self.createFormString(param).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            if str?.isEmpty == false {
+                req.url = URL(string: r.origin + r.path + "?" + str!)!
             }
             data = nil
         case (_, .form):

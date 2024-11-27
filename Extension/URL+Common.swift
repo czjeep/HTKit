@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UniformTypeIdentifiers
 
 extension URL {
     
@@ -31,5 +32,28 @@ extension URL {
         let param = query?.components(separatedBy: "&") ?? []
         return param
     }
+}
+
+extension URL {
     
+    /// 获取文件属性
+    func fileAttributes() -> [FileAttributeKey : Any] {
+        do {
+            let attributes = try FileManager.default.attributesOfItem(atPath: relativePath)
+            return attributes
+        } catch {
+            print("无法获取文件属性: \(error)")
+        }
+        return [:]
+    }
+    
+    /// Determine the file's content type (MIME type)
+    func fileType() -> String? {
+        if let fileType = UTType(filenameExtension: pathExtension)?.preferredMIMEType {
+            return fileType
+        } else {
+            print("Unable to determine content type")
+        }
+        return nil
+    }
 }
