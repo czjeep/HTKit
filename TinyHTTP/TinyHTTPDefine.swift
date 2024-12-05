@@ -8,7 +8,7 @@ enum TinyHTTPMethod: String {
     case patch = "PATCH"
 }
 
-enum TinyHTTPContentType {
+enum TinyHTTPContentType: String {
     case form, json, multipart
 }
 
