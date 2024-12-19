@@ -9,8 +9,8 @@ import UIKit
 
 extension UIFont {
     
-    /// 粗体 weight-700
-    static func pingFangBold(_ size: CGFloat) -> UIFont {
+    /// 粗体 weight-700。没有这种字体
+    static private func pingFangBold(_ size: CGFloat) -> UIFont {
         UIFont(name: "PingFangSC-Bold", size: size)!
     }
     
