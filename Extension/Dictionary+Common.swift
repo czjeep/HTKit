@@ -51,6 +51,15 @@ extension Dictionary {
         return nil
     }
     
+    func dic(for key: Key) -> [String: Any]? {
+        if let value = self[key] {
+            if let result = value as? [String: Any] {
+                return result
+            }
+        }
+        return nil
+    }
+    
     var jsonData: Data? {
         do {
             let data = try JSONSerialization.data(withJSONObject: self)
