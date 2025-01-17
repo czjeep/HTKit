@@ -51,7 +51,7 @@ final class TinyHTTPSeviceCenter: NSObject, TinyHTTPSevice {
             }
             
             var (response, error): (T.Response?, TinyHTTPError?)
-            (response, error) = self.handleResponse(request: req, data: data, res: resp, err: err)
+            (response, error) = self.handleResponse(request: req, data: data, resp: resp, err: err)
 
             if let temp = error {
                 TinyHTTPLog.i(temp)
@@ -63,17 +63,17 @@ final class TinyHTTPSeviceCenter: NSObject, TinyHTTPSevice {
         task.resume()
     }
     
-    func handleResponse<T: TinyHTTPDecodable>(request: URLRequest, data: Data?, res: URLResponse?, err: Error?) -> (T?, TinyHTTPError?) {
+    func handleResponse<T: TinyHTTPDecodable>(request: URLRequest, data: Data?, resp: URLResponse?, err: Error?) -> (T?, TinyHTTPError?) {
         if let temp = err {
             return (nil, TinyHTTPError(temp))
         } else if let temp = data {
             do {
-                let res = try T(data: temp)
+                let res = try T(data: temp, resp: resp)
                 return (res, nil)
             } catch {
                 return (nil, .init(error))
             }
-        } else if let temp = res as? HTTPURLResponse {
+        } else if let temp = resp as? HTTPURLResponse {
             return (nil, TinyHTTPError(code: temp.statusCode, message: temp.description))
         } else {
             return (nil, TinyHTTPError("无法解析响应头"))

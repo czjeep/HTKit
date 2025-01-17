@@ -14,7 +14,7 @@ enum TinyHTTPContentType: String {
 
 
 protocol TinyHTTPDecodable {
-    init(data: Data) throws
+    init(data: Data, resp: URLResponse?) throws
 }
 
 struct TinyHTTPError: LocalizedError {
