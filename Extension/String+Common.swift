@@ -22,6 +22,11 @@ extension String {
     }
 }
 
+extension NSAttributedString {
+    
+    var attributedString: AttributedString { AttributedString(self) }
+}
+
 
 public extension String {
     
