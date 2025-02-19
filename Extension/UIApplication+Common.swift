@@ -19,4 +19,14 @@ extension UIApplication {
         }
         return delegate.window!
     }
+    
+    /// 打开app的系统设置页
+    @discardableResult
+    func goSetting() -> Bool {
+        if let url = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(url)
+            return true
+        }
+        return false
+    }
 }
