@@ -74,12 +74,20 @@ extension Int {
     enum IntNeg1: JsonValueType {
         static let defaultValue: Int = 1
     }
+    
+    ///毫秒时间戳
+    enum TimestampInMilliseconds: JsonValueType {
+        static var defaultValue: Int {
+            return Date.timestampInMilliseconds()
+        }
+    }
 }
 
 extension JsonProperty {
     typealias Int0 = JsonProperty<Int.Int0>
     typealias Int1 = JsonProperty<Int.Int1>
     typealias IntNeg1 = JsonProperty<Int.IntNeg1>
+    typealias TimestampInMilliseconds = JsonProperty<Int.TimestampInMilliseconds>
 }
 
 extension String {
