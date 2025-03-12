@@ -34,8 +34,10 @@ class HTHUD: NSObject {
     }
     
     /// 消失
-    static func dismiss() {
-        SVProgressHUD.dismiss()
+    static func dismiss(completion: (() -> Void)? = nil) {
+        SVProgressHUD.dismiss {
+            completion?()
+        }
     }
     
     /// 显示一个成功图标和文案的toaster
