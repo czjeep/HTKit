@@ -287,6 +287,18 @@ extension UIView {
             subview.removeFromSuperview()
         }
     }
+    
+    /// 获取所有的子view。包括子view的子view
+    func getAllSubviews() -> [UIView] {
+        var allSubviews: [UIView] = []
+        
+        for view in subviews {
+            allSubviews.append(view)  // 添加子视图
+            allSubviews.append(contentsOf: view.getAllSubviews()) // 递归获取子视图的子视图
+        }
+        
+        return allSubviews
+    }
 }
 
 fileprivate class Goat {
