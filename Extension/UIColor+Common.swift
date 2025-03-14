@@ -36,6 +36,43 @@ extension UIColor {
         self.init(red: r, green: g, blue: b, alpha: a)
     }
     
+    convenience init?(colorDes: String) {
+        switch colorDes.lowercased() {
+        case "black":
+            self.init(cgColor: UIColor.black.cgColor)
+        case "darkgray":
+            self.init(cgColor: UIColor.darkGray.cgColor)
+        case "lightgray":
+            self.init(cgColor: UIColor.lightGray.cgColor)
+        case "white":
+            self.init(cgColor: UIColor.white.cgColor)
+        case "gray":
+            self.init(cgColor: UIColor.gray.cgColor)
+        case "red":
+            self.init(cgColor: UIColor.red.cgColor)
+        case "green":
+            self.init(cgColor: UIColor.green.cgColor)
+        case "blue":
+            self.init(cgColor: UIColor.blue.cgColor)
+        case "cyan":
+            self.init(cgColor: UIColor.cyan.cgColor)
+        case "yellow":
+            self.init(cgColor: UIColor.yellow.cgColor)
+        case "magenta":
+            self.init(cgColor: UIColor.magenta.cgColor)
+        case "orange":
+            self.init(cgColor: UIColor.orange.cgColor)
+        case "purple":
+            self.init(cgColor: UIColor.purple.cgColor)
+        case "brown":
+            self.init(cgColor: UIColor.brown.cgColor)
+        case "clear":
+            self.init(cgColor: UIColor.clear.cgColor)
+        default:
+            return nil
+        }
+    }
+    
     /// rgb数值
     convenience init(rgbHex: Int, alpha: CGFloat = 1) {
         let r, g, b, a: CGFloat
