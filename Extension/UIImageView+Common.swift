@@ -29,4 +29,16 @@ extension UIImageView {
         }
         sd_setImage(with: url, placeholderImage: placeholder)
     }
+    
+    func setImage(with urlString: String?, placeholderImageName: String?, options: SDWebImageOptions, completed: SDExternalCompletionBlock?) {
+        var url: URL?
+        if let v = urlString {
+            url = URL(string: v)
+        }
+        var placeholder: UIImage?
+        if let t = placeholderImageName {
+            placeholder = .bundleImage(t)
+        }
+        sd_setImage(with: url, placeholderImage: placeholder, options: options, completed: completed)
+    }
 }
