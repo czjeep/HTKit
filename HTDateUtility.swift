@@ -20,7 +20,11 @@ class HTDateUtility: NSObject {
     
     /// 矫正差值：正确时间戳秒
     static func correctWithSeconds(_ timestamp: Double) {
-        diffValue = timestamp-Date.now.timeIntervalSince1970
+        if #available(iOS 15, *) {
+            diffValue = timestamp-Date.now.timeIntervalSince1970
+        } else {
+            diffValue = timestamp-Date().timeIntervalSince1970
+        }
     }
     
     /// 当前时间

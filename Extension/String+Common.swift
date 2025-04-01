@@ -24,6 +24,7 @@ extension String {
 
 extension NSAttributedString {
     
+    @available(iOS 15, *)
     var attributedString: AttributedString { AttributedString(self) }
 }
 
