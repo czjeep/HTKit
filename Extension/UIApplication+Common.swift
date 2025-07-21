@@ -14,10 +14,13 @@ extension UIApplication {
     }
     
     var window: UIWindow? {
-        guard let delegate = sceneDelegate as? UIWindowSceneDelegate else {
-            return nil
+        if let obj = sceneDelegate as? UIWindowSceneDelegate {
+            return obj.window!
         }
-        return delegate.window!
+        if let obj = delegate {
+            return obj.window!
+        }
+        return nil
     }
     
     /// 打开app的系统设置页
