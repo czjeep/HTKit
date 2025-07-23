@@ -23,6 +23,12 @@ class HTHUD: NSObject {
         SVProgressHUD.setForegroundColor(.white)
     }
     
+    /// 自定义显示loading
+    static var showLoadingHandler: (() -> Void)?
+    
+    /// 自定义移除loading
+    static var dismissLoadingHandler: (() -> Void)?
+    
     /// 显示加载动画。要调用dismiss来消失
     static func show() {
         SVProgressHUD.show()
@@ -30,13 +36,21 @@ class HTHUD: NSObject {
     
     /// 显示加载动画，附带文案。要调用dismiss来消失
     static func show(withStatus status: String?) {
-        SVProgressHUD.show(withStatus: status)
+        if let t = showLoadingHandler {
+            t()
+        } else {
+            SVProgressHUD.show(withStatus: status)
+        }
     }
     
     /// 消失
     static func dismiss(completion: (() -> Void)? = nil) {
-        SVProgressHUD.dismiss {
-            completion?()
+        if let t = dismissLoadingHandler {
+            t()
+        } else {
+            SVProgressHUD.dismiss {
+                completion?()
+            }
         }
     }
     
