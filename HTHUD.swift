@@ -66,6 +66,9 @@ class HTHUD: NSObject {
     
     /// 显示一个文案的toaster
     static func showInfo(withStatus status: String?) {
+        if let t = dismissLoadingHandler {
+            t()
+        }
         SVProgressHUD.showInfo(withStatus: status)
     }
     
