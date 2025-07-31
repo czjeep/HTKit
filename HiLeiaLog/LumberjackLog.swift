@@ -34,6 +34,8 @@ class LumberjackLog: NSObject {
         
         let fileLogger = DDFileLogger(logFileManager: manager)
         fileLogger.logFormatter = LumberjackFileLogFormatter()
+        fileLogger.maximumFileSize = 2 * 1024 * 1024 // 设置最大文件大小为 2MB（2097152 字节）
+        fileLogger.rollingFrequency = 0 // 禁用按时间滚动
         ddLog.add(fileLogger, with: .info)  //文件中保存error, warning, info等级的日志
     }
     
@@ -161,14 +163,14 @@ class LumberjackLogFileManager: DDLogFileManagerDefault {
     
     lazy var dateFormatter: DateFormatter = {
         let obj = DateFormatter()
-        obj.dateFormat = "yyyy-MM-dd-hh--mm-ss"
+        obj.dateFormat = "yyyy-MM-dd_HH-mm-ss"
         return obj
     }()
     
     override var newLogFileName: String {
         let timeStr = dateFormatter.string(from: Date())
         
-        return filePrefix + " " + timeStr + ".log"
+        return filePrefix + "_" + timeStr + ".log"
     }
     
     override func isLogFile(withName fileName: String) -> Bool {
