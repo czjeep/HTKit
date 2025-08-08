@@ -69,4 +69,24 @@ extension Dictionary {
         }
         return nil
     }
+    
+    func flatten(prefix: String = "") -> [String: Any] {
+        guard let dictionary = self as? [String: Any] else { return [:]}
+        
+        var result: [String: Any] = [:]
+        
+        for (key, value) in dictionary {
+            let newKey = prefix.isEmpty ? key : "\(prefix).\(key)"
+            
+            if let nestedDict = value as? [String: Any] {
+                // 递归展开子字典
+                let flattened = nestedDict.flatten(prefix: newKey)
+                result.merge(flattened) { (_, new) in new }
+            } else {
+                result[newKey] = value
+            }
+        }
+
+        return result
+    }
 }
