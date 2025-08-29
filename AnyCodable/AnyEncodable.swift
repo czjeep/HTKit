@@ -88,14 +88,7 @@ extension _AnyEncodable {
             try container.encode(string)
         #if canImport(Foundation)
         case let number as NSNumber:
-//            try encode(nsnumber: number, into: &container)
-            // ⚠️ iOS16 修复点：区分 Bool 与 Number
-            if CFGetTypeID(number) == CFBooleanGetTypeID() {
-                try container.encode(number.boolValue)
-            } else {
-                // 你可以根据实际需要选择 intValue / doubleValue
-                try container.encode(number.intValue)
-            }
+            try encode(nsnumber: number, into: &container)
         case let date as Date:
             try container.encode(date)
         case let url as URL:

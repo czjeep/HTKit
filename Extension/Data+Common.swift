@@ -33,6 +33,12 @@ extension Data {
         return nil
     }
     
+    /// 回抛出异常
+    func jsonDecoder2<T: Decodable>(to type: T.Type) throws -> T {
+        let result = try JSONDecoder().decode(T.self, from: self)
+        return result
+    }
+    
     func jsonDic() -> [String: Any] {
         guard let obj = json() as? [String: Any] else {
             return [:]
