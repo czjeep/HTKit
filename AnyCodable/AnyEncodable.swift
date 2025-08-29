@@ -50,7 +50,13 @@ extension AnyEncodable: _AnyEncodable {}
 extension _AnyEncodable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-
+//        print("encode: \(value), \(type(of: value))")
+        
+        if let number = value as? NSNumber {
+            try encode(nsnumber: number, into: &container)
+            return
+        }
+        
         switch value {
         #if canImport(Foundation)
         case is NSNull:
@@ -58,7 +64,8 @@ extension _AnyEncodable {
         #endif
         case is Void:
             try container.encodeNil()
-        case let bool as Bool:
+        case let bool as Bool: //会把数字0/1变成布尔值
+            print("to bool")
             try container.encode(bool)
         case let int as Int:
             try container.encode(int)
@@ -108,11 +115,13 @@ extension _AnyEncodable {
 
     #if canImport(Foundation)
     private func encode(nsnumber: NSNumber, into container: inout SingleValueEncodingContainer) throws {
-        switch Character(Unicode.Scalar(UInt8(nsnumber.objCType.pointee)))  {
+        let ctype = Character(Unicode.Scalar(UInt8(nsnumber.objCType.pointee)))
+        switch ctype {
         case "B":
             try container.encode(nsnumber.boolValue)
-        case "c":
-            try container.encode(nsnumber.int8Value)
+        case "c": //warning:目前见到的是bool值
+//            try container.encode(nsnumber.int8Value)
+            try container.encode(nsnumber.boolValue)
         case "s":
             try container.encode(nsnumber.int16Value)
         case "i", "l":
