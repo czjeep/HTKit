@@ -65,7 +65,7 @@ extension _AnyEncodable {
         case is Void:
             try container.encodeNil()
         case let bool as Bool: //会把数字0/1变成布尔值
-            print("to bool")
+//            print("to bool")
             try container.encode(bool)
         case let int as Int:
             try container.encode(int)
