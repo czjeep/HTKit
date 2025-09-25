@@ -27,8 +27,17 @@ class HTDateUtility: NSObject {
         }
     }
     
-    /// 当前时间
+    /// 当前时间（矫正后）
     static var now: Date {
         return Date(timeIntervalSinceNow: diffValue)
+    }
+    
+    /// 当前时间（系统的）
+    static var system_now: Date {
+        if #available(iOS 15, *) {
+            return Date.now
+        } else {
+            return Date()
+        }
     }
 }
