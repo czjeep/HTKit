@@ -125,6 +125,8 @@ extension String {
 class LumberjackConsolLogFormatter: NSObject, DDLogFormatter {
     
     func format(message logMessage: DDLogMessage) -> String? {
+        let timeStr = dateFormatter.string(from: logMessage.timestamp)
+        
         let file = logMessage.fileName.prefixString()
         let line = logMessage.line
         
@@ -133,7 +135,7 @@ class LumberjackConsolLogFormatter: NSObject, DDLogFormatter {
         let tag = logMessage.tag ?? ""  //3.6.1
         let msg = logMessage.message
         
-        return "[\(tag) \(file) \(line)] [\(flagStr)] \(msg)"
+        return "[\(timeStr) \(tag) \(file) \(line)] [\(flagStr)] \(msg)"
     }
 }
 
