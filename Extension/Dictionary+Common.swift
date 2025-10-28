@@ -9,6 +9,7 @@ import Foundation
 
 extension Dictionary {
     
+    /// 注意：字典里只能是原生的基础类型，不能包含自定义类型。
     var jsonString: String? {
         do {
             let data = try JSONSerialization.data(withJSONObject: self)
