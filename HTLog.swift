@@ -7,7 +7,7 @@
 
 import Foundation
 
-class HTLog: NSObject {
+class HTLog: NSObject { private override init() {}
     
     private static var logImpl: HiLeiaLogApi?
     
