@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CocoaLumberjack
 
 public class HiLeiaLogApi: NSObject {
     

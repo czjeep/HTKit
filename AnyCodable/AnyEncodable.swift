@@ -119,7 +119,7 @@ extension _AnyEncodable {
         switch ctype {
         case "B":
             try container.encode(nsnumber.boolValue)
-        case "c": //warning:目前见到的是bool值
+        case "c": //czwarning:目前见到的是bool值
 //            try container.encode(nsnumber.int8Value)
             try container.encode(nsnumber.boolValue)
         case "s":

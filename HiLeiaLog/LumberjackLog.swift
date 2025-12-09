@@ -31,6 +31,7 @@ class LumberjackLog: NSObject {
     private func addFileLogger(_ directory: String?, filePrefix: String) {
         let manager = LumberjackLogFileManager(logsDirectory: directory)
         manager.filePrefix = filePrefix
+        manager.maximumNumberOfLogFiles = 20 //保留最新的20个日志文件
         
         let fileLogger = DDFileLogger(logFileManager: manager)
         fileLogger.logFormatter = LumberjackFileLogFormatter()
