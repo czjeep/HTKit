@@ -30,3 +30,14 @@ extension UIButton {
         sd_setImage(with: url, for: state, placeholderImage: placeholder)
     }
 }
+
+@available(iOS 15.0, *)
+extension UIButton.Configuration {
+    
+    static func custom() -> UIButton.Configuration {
+        var configuration = UIButton.Configuration.plain()
+        configuration.contentInsets = .zero
+        configuration.baseBackgroundColor = .clear
+        return configuration
+    }
+}
