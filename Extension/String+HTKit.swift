@@ -137,3 +137,13 @@ extension String {
         return jsonObj as? [String: Any]
     }
 }
+
+extension String {
+    
+    /// 是否是合法的中国大陆手机号
+    var isValidCNPhone: Bool {
+        let regex = "^1[3-9]\\d{9}$"
+        return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: self)
+    }
+    
+}

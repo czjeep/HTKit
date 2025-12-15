@@ -46,3 +46,15 @@ extension Data {
         return obj
     }
 }
+
+extension Data {
+    
+    var hexLower: String {
+        return map { String(format: "%02hhx", $0) }.joined()
+    }
+    
+    var base64: String {
+        return base64EncodedString()
+    }
+}
+
