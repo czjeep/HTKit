@@ -20,9 +20,9 @@ extension Bool {
     }
 }
 
-extension HTDefaultDecodeValue {
-    typealias True = HTDefaultDecodeValue<Bool.True>
-    typealias False = HTDefaultDecodeValue<Bool.False>
+extension HTDecodeValue {
+    typealias True = HTDecodeValue<Bool.True>
+    typealias False = HTDecodeValue<Bool.False>
 }
 
 //MARK: 增加Int支持
@@ -50,11 +50,11 @@ extension Int {
     }
 }
 
-extension HTDefaultDecodeValue {
-    typealias Int0 = HTDefaultDecodeValue<Int.Int0>
-    typealias Int1 = HTDefaultDecodeValue<Int.Int1>
-    typealias IntNeg1 = HTDefaultDecodeValue<Int.IntNeg1>
-    typealias TimestampInMilliseconds = HTDefaultDecodeValue<Int.TimestampInMilliseconds>
+extension HTDecodeValue {
+    typealias Int0 = HTDecodeValue<Int.Int0>
+    typealias Int1 = HTDecodeValue<Int.Int1>
+    typealias IntNeg1 = HTDecodeValue<Int.IntNeg1>
+    typealias TimestampInMilliseconds = HTDecodeValue<Int.TimestampInMilliseconds>
 }
 
 //MARK: 增加String支持
@@ -65,6 +65,6 @@ extension String {
     }
 }
 
-extension HTDefaultDecodeValue {
-    typealias StringEmtpy = HTDefaultDecodeValue<String.StringEmtpy>
+extension HTDecodeValue {
+    typealias StringEmtpy = HTDecodeValue<String.StringEmtpy>
 }

@@ -1,5 +1,5 @@
 //
-//  HTDefaultDecodeValue.swift
+//  HTDecodeValue.swift
 //  WuKongKit
 //
 //  Created by weitu on 2025/1/13.
@@ -16,18 +16,18 @@ protocol HTCodable {
 }
 
 @propertyWrapper
-struct HTDefaultDecodeValue<T: HTCodable> {
+struct HTDecodeValue<T: HTCodable> {
     var wrappedValue: T.Value
 }
 
-extension HTDefaultDecodeValue: Decodable {
+extension HTDecodeValue: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         wrappedValue = (try? container.decode(T.Value.self)) ?? T.defaultDecodeValue
     }
 }
 
-extension HTDefaultDecodeValue: Encodable {
+extension HTDecodeValue: Encodable {
     func encode(to encoder: any Encoder) throws {
         try wrappedValue.encode(to: encoder)
     }
@@ -35,10 +35,10 @@ extension HTDefaultDecodeValue: Encodable {
 
 extension KeyedDecodingContainer {
     func decode<T>(
-        _ type: HTDefaultDecodeValue<T>.Type,
+        _ type: HTDecodeValue<T>.Type,
         forKey key: Key
-    ) throws -> HTDefaultDecodeValue<T> where T: HTCodable {
-        try decodeIfPresent(type, forKey: key) ?? HTDefaultDecodeValue(wrappedValue: T.defaultDecodeValue)
+    ) throws -> HTDecodeValue<T> where T: HTCodable {
+        try decodeIfPresent(type, forKey: key) ?? HTDecodeValue(wrappedValue: T.defaultDecodeValue)
     }
 }
 
