@@ -44,3 +44,10 @@ extension UIFont {
         UIFont(name: "PingFangSC-Ultralight", size: size)!
     }
 }
+
+extension UIFont {
+    
+    static func DINAlternateBold(_ size: CGFloat) -> UIFont {
+        UIFont(name: "DINAlternate-Bold", size: size)!
+    }
+}
