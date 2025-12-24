@@ -15,7 +15,7 @@ extension UIImageView {
         if let v = urlString {
             url = URL(string: v)
         }
-        sd_setImage(with: url, placeholderImage: placeholder)
+        sd_setImage(with: url, placeholderImage: placeholder, options: [.allowInvalidSSLCertificates])
     }
     
     func setImage(with urlString: String?, placeholderImageName: String?) {
@@ -27,7 +27,7 @@ extension UIImageView {
         if let t = placeholderImageName {
             placeholder = .bundleImage(t)
         }
-        sd_setImage(with: url, placeholderImage: placeholder)
+        sd_setImage(with: url, placeholderImage: placeholder, options: [.allowInvalidSSLCertificates])
     }
     
     func setImage(with urlString: String?, placeholderImageName: String?, options: SDWebImageOptions, completed: SDExternalCompletionBlock?) {
