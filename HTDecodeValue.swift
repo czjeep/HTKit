@@ -20,6 +20,8 @@ struct HTDecodeValue<T: HTCodable> {
     var wrappedValue: T.Value
 }
 
+extension HTDecodeValue: Equatable where T.Value: Equatable {}
+
 extension HTDecodeValue: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
