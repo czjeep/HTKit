@@ -82,11 +82,12 @@ extension String {
     }
     
     func toPinYin() -> String {
-        let mutableString = NSMutableString(string: self)
-        CFStringTransform(mutableString, nil, kCFStringTransformToLatin, false)
-        CFStringTransform(mutableString, nil, kCFStringTransformStripDiacritics, false)
-        let string = String(mutableString)
-        return string.replacingOccurrences(of: " ", with: "")
+        let mutable = NSMutableString(string: self) as CFMutableString
+        CFStringTransform(mutable, nil, kCFStringTransformToLatin, false)
+        CFStringTransform(mutable, nil, kCFStringTransformStripCombiningMarks, false)
+        return (mutable as String)
+            .replacingOccurrences(of: " ", with: "")
+            .lowercased()
     }
 }
 
