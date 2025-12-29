@@ -108,6 +108,18 @@ extension Optional {
     }
 }
 
+extension Optional where Wrapped == String {
+    
+    func nilOrEmpty() -> Bool {
+        switch self {
+        case .none:
+            return true
+        case .some(let wrapped):
+            return wrapped.isEmpty
+        }
+    }
+}
+
 extension String {
     
     func removeLastIfContains(_ str: String) -> String {
